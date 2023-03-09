@@ -55,8 +55,10 @@
     <Compile Include="Frame.Designer.cs">
       <DependentUpon>Frame.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utils\Msg.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IOModule.cs" />
     <Compile Include="Student.cs" />
     <EmbeddedResource Include="Frame.resx">
       <DependentUpon>Frame.cs</DependentUpon>

@@ -123,7 +123,7 @@ namespace IOExercise
             this.saveFileButton.TabIndex = 7;
             this.saveFileButton.Text = "Lưu DS";
             this.saveFileButton.UseVisualStyleBackColor = true;
-            this.saveFileButton.Click += new System.EventHandler(this.saveFileButton_Click);
+            this.saveFileButton.Click += new System.EventHandler(this.SaveFileButton_Click);
             // 
             // oDirectory
             // 
@@ -156,7 +156,6 @@ namespace IOExercise
             this.StudentList.HideSelection = false;
             this.StudentList.Location = new System.Drawing.Point(40, 184);
             this.StudentList.Name = "StudentList";
-            this.StudentList.Scrollable = false;
             this.StudentList.Size = new System.Drawing.Size(584, 296);
             this.StudentList.TabIndex = 10;
             this.StudentList.UseCompatibleStateImageBehavior = false;
@@ -169,7 +168,7 @@ namespace IOExercise
             // cCode
             // 
             this.cCode.Text = "Mã SV";
-            this.cCode.Width = 80;
+            this.cCode.Width = 85;
             // 
             // cName
             // 
@@ -201,7 +200,7 @@ namespace IOExercise
             this.openFileButton.TabIndex = 11;
             this.openFileButton.Text = "Mở DS";
             this.openFileButton.UseVisualStyleBackColor = true;
-            this.openFileButton.Click += new System.EventHandler(this.openFileButton_Click);
+            this.openFileButton.Click += new System.EventHandler(this.OpenFileButton_Click);
             // 
             // openFileDialog
             // 

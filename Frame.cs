@@ -13,7 +13,7 @@ namespace IOExercise
 
         private List<Student> students = new List<Student>();
 
-        private void saveFileButton_Click(object sender, System.EventArgs e)
+        private void SaveFileButton_Click(object sender, System.EventArgs e)
         {
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -21,15 +21,12 @@ namespace IOExercise
                 oDirectory.Visible = true;
                 oDirectory.Text = Path.GetFullPath(saveFileDialog.FileName);
 
-                foreach (var item in students)
-                {
-                    item.WriteToFile(saveFileDialog.FileName);
-                }
-                MessageBox.Show("Lưu thành công");
+                IOModule io = new IOModule();
+                io.WriteToFile(saveFileDialog, students);
             }
             else
             {
-                MessageBox.Show("Lưu thất bại");
+                Msg.Info("Đã huỷ lưu tệp.");
             }
         }
 
@@ -37,31 +34,27 @@ namespace IOExercise
         {
             if (string.IsNullOrEmpty(iCode.Text) || string.IsNullOrEmpty(iName.Text) || string.IsNullOrEmpty(iScore.Text))
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin");
+                Msg.Error("Vui lòng nhập đầy đủ thông tin");
                 return;
             }
             if (double.Parse(iScore.Text) < 0 || double.Parse(iScore.Text) > 10)
             {
-                MessageBox.Show("Điểm phải nằm trong khoảng 0 - 10");
-                return;
-            }
-            if (iCode.Text.Length > 10)
-            {
-                MessageBox.Show("Mã sinh viên không được quá 10 ký tự");
+                Msg.Error("Điểm phải nằm trong khoảng 0 - 10");
                 return;
             }
             ListViewItem item = new ListViewItem((students.Count + 1).ToString());
+            students.Add(new Student(iCode.Text, iName.Text, double.Parse(iScore.Text)));
             item.SubItems.Add(iCode.Text);
             item.SubItems.Add(iName.Text);
             item.SubItems.Add(iScore.Text);
             StudentList.Items.Add(item);
-            students.Add(new Student(iCode.Text, iName.Text, double.Parse(iScore.Text)));
             iCode.Text = string.Empty;
             iName.Text = string.Empty;
             iScore.Text = string.Empty;
+            iCode.Focus();
         }
 
-        private void openFileButton_Click(object sender, System.EventArgs e)
+        private void OpenFileButton_Click(object sender, System.EventArgs e)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -72,8 +65,8 @@ namespace IOExercise
                 oDirectory.Visible = true;
                 oDirectory.Text = Path.GetFullPath(openFileDialog.FileName);
 
-                Student student = new Student();
-                student.ReadFromFile(openFileDialog.FileName, StudentList, students);
+                IOModule io = new IOModule();
+                io.ReadFromFile(openFileDialog.FileName, StudentList, students);
             };
         }
     }
